@@ -1,220 +1,448 @@
 # AI Career Coach
 
-A production-ready AI-powered career coach system using Groq LLM API for fast, cloud-based inference.
+### An Intelligent Multi-Agent System for Personalized Career Growth and Placement Success
 
-## Architecture
+AI Career Coach is an adaptive career guidance and placement preparation platform designed to understand a student's current state, identify skill gaps, personalize learning, simulate placement rounds, evaluate performance, and continuously recommend the next best action.
 
+## 🎯 Problem Statement
+
+Students often learn from multiple platforms but do not have a unified system that answers:
+
+- What career role is suitable for me?
+- What skills am I strong or weak in?
+- What should I learn next?
+- Am I ready for my target role?
+- How will I perform in a real placement process?
+
+Traditional systems commonly separate learning, assessment, and placement preparation.
+
+**AI Career Coach connects these stages into one adaptive journey.**
+
+## 💡 Solution
+
+The system continuously transforms student activity into career intelligence:
+
+1. Understand the student's profile, goals, interests, skills, projects, and history.
+2. Assess current knowledge and performance.
+3. Identify strengths and skill gaps.
+4. Generate a personalized roadmap.
+5. Track learning and progress.
+6. Evaluate readiness.
+7. Simulate placement activities.
+8. Store evidence and update student memory.
+9. Recommend the next best action.
+
+> **Every student activity creates evidence, and every piece of evidence helps determine the next action.**
+
+## 🏗️ System Architecture
+
+<p align="center">
+  <img src="assets/architecture.png" alt="AI Career Coach Agent Architecture" width="1100">
+</p>
+
+### Main Components
+
+**AI Career Coach — Main Orchestrator**
+- Understands student state
+- Plans next steps
+- Orchestrates Skills
+- Maintains long-term understanding
+- Adapts to student progress
+
+**Planner — Qwen 4B**
+- Understands student state
+- Breaks down goals
+- Creates short-term plans
+- Prioritizes next actions
+
+**Router**
+- Selects the appropriate Skill
+- Checks context and preconditions
+- Routes execution
+
+**Pipeline Executor**
+- Loads context and instructions
+- Executes the Skill
+- Validates output
+- Stores results
+
+**Specialized Skills**
+- Survey
+- Assessment
+- Learning
+- Interview
+- Reflection
+- Company Fit
+- Peer Benchmark
+- Placement Simulation
+
+**Evaluation Engine**
+- Scores performance
+- Tracks strengths and weaknesses
+- Measures skill mastery
+- Generates recommendations and explanations
+
+**Career Intelligence & Memory**
+- Student profile and goals
+- Assessment and interview history
+- Learning progress
+- Skills and concepts
+- Notes, resources, projects, and preferences
+- Structured memory, knowledge graph, vector store, and memory management
+
+## 🔄 Two Core Modules
+
+### Module 1 — Career Preparation Engine
+
+```text
+Survey
+   ↓
+Assessment
+   ↓
+Student Profile
+   ↓
+Skill Gap Engine
+   ↓
+Personalized Roadmap
+   ↓
+Learning Progress
+   ↓
+Readiness Gate
 ```
-Frontend (Streamlit)
-    ↓ HTTP/REST API
-Backend (FastAPI)
-    ↓
-Career Coach Agent
-    ↓
-Skills (Survey, Assessment, Learning, Placement, Interview, Reflection)
-    ↓
-LLM Interface
-    ↓
-Groq Service
-    ↓
-Groq API (Llama 3 8B)
+
+### Module 2 — Placement Simulation Engine
+
+```text
+Placement Simulation
+        │
+        ├── Aptitude Round
+        ├── Coding Round
+        ├── Technical Round
+        └── HR Round
+                 ↓
+             Evaluation
+                 ↓
+          Placement Score
+                 ↓
+          Recruiter Report
 ```
 
-## Features
+## 🔁 Agent Workflow
 
-- **AI Career Discovery Survey**: Personalized career goal identification
-- **Technical Skill Assessment**: Adaptive assessments with knowledge graph tracking
-- **Learning Roadmap**: AI-generated personalized learning paths
-- **Placement Simulation**: Comprehensive placement readiness assessment with visual analytics
-- **Mock Interviews**: Realistic interview simulation with feedback
-- **Reflection**: Confidence tracking and learning insights
-- **Evaluation Engine**: Centralized progress and readiness scoring
-- **SQLite Persistence**: Full database integration with SQLAlchemy
-- **JWT Authentication**: Secure user authentication and authorization
+```text
+Receive Input
+     ↓
+Read Memory
+     ↓
+Plan
+     ↓
+Route to Skill
+     ↓
+Execute Skill
+     ↓
+Evaluate Result
+     ↓
+Update Memory
+     ↓
+Recommend Next Action
+     ↓
+Repeat
+```
 
-## Tech Stack
+This creates a continuous adaptive loop rather than a fixed learning sequence.
 
-### Backend
-- **Framework**: FastAPI
-- **LLM**: Groq API (Llama 3 8B)
-- **Database**: SQLite with SQLAlchemy 2.0
-- **Migrations**: Alembic
-- **Authentication**: JWT with passlib
-- **Async**: aiosqlite for async SQLite
+## 🤖 AI Model Responsibilities
 
-### Frontend
-- **Framework**: Streamlit
-- **HTTP**: requests library
-- **Visualization**: Plotly
+### Qwen 4B — Planner
 
-## Setup Instructions
+Used for planning and reasoning:
+- Student-state analysis
+- Next-action planning
+- Prioritization
+- Multi-step planning
+- Skill-gap reasoning
 
-### Prerequisites
+### Groq API — Content Generation
 
-1. **Groq API Key**: Get a free API key from https://console.groq.com/keys
+Used for:
+- Survey questions
+- Assessment questions
+- Learning activities
+- Coding problems
+- Technical questions
+- Interview questions
 
-### Backend Setup
+> **LLMs generate and reason. The backend controls the workflow.**
 
-1. **Navigate to backend directory**
-   ```bash
-   cd backend
-   ```
+## 🧠 Career Intelligence Feedback Loop
 
-2. **Create virtual environment**
-   ```bash
-   python -m venv venv
-   venv\Scripts\activate  # Windows
-   # or
-   source venv/bin/activate  # Linux/Mac
-   ```
+```text
+Career Preparation
+       ↓
+Student Evidence
+       ↓
+Career Intelligence
+       ↓
+Placement Simulation
+       ↓
+Placement Evidence
+       ↓
+Career Intelligence
+       ↓
+Updated Skill Gaps
+       ↓
+Targeted Learning
+```
 
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+Example:
 
-4. **Configure environment variables**
-   ```bash
-   copy .env.example .env
-   ```
-   Edit `.env` with your configuration:
-   ```env
-   DATABASE_URL=sqlite+aiosqlite:///./data/career_coach.db
-   SECRET_KEY=your-secret-key-here-change-in-production
-   LLM_PROVIDER=groq
-   GROQ_API_KEY=your-groq-api-key-here
-   GROQ_MODEL=llama3-8b-8192
-   ```
+```text
+Assessment
+   ↓
+DSA weakness detected
+   ↓
+Personalized Learning
+   ↓
+Coding Simulation
+   ↓
+Poor coding performance
+   ↓
+Career Intelligence
+   ↓
+Targeted DSA practice
+```
 
-5. **Start the backend server**
-   ```bash
-   uvicorn main:app --reload --port 8001
-   ```
+## 📊 Evaluation & Readiness
 
-### Frontend Setup
+The system tracks:
+- Technical performance
+- Skill mastery
+- Learning progress
+- Confidence
+- Assessment scores
+- Interview performance
+- Placement performance
+- Strengths and weaknesses
 
-1. **Navigate to frontend directory**
-   ```bash
-   cd demo  # Note: Will be renamed to frontend in production
-   ```
+These signals contribute to readiness and next-action recommendations.
 
-2. **Create virtual environment**
-   ```bash
-   python -m venv venv
-   venv\Scripts\activate  # Windows
-   # or
-   source venv/bin/activate  # Linux/Mac
-   ```
+## 💾 Memory Architecture
 
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+```text
+Structured Memory
+ ├── Profile & Goals
+ ├── Assessments & Scores
+ ├── Interview History
+ ├── Learning History
+ └── Activity & Engagement
 
-4. **Start the frontend**
-   ```bash
-   streamlit run app.py
-   ```
+Knowledge Graph
+ ├── Skills
+ ├── Concepts
+ ├── Prerequisites
+ └── Relationships
 
-## API Endpoints
+Vector Store
+ ├── Resume Embeddings
+ ├── Notes & Resources
+ ├── Interview Context
+ └── Learning Materials
 
-### Authentication
-- `POST /user/signup` - Sign up or login user
-- `GET /user/profile` - Get user profile
-- `GET /user/session` - Get user session
+Memory Manager
+ ├── Read
+ ├── Write
+ ├── Merge
+ ├── Version
+ └── Retrieve
+```
 
-### Career Coach
-- `POST /survey/` - Submit career survey
-- `POST /assessment/` - Submit assessment
-- `POST /learning/` - Generate learning roadmap
-- `POST /placement/assess` - Assess placement readiness
-- `GET /placement/progress` - Get placement progress
-- `POST /interview/` - Submit interview response
-- `POST /reflection/` - Submit reflection
-- `GET /dashboard/` - Get student dashboard
+## 🛠️ Technology Stack
 
-### Health
-- `GET /health` - Health check endpoint
+- Python
+- FastAPI
+- Streamlit
+- PostgreSQL
+- Groq API
+- Qwen 4B
+- Pydantic
+- AsyncIO
 
-## Database Schema
+## 🧪 CLI-First Development
 
-- **users**: User authentication
-- **students**: Student profiles
-- **surveys**: Career survey data
-- **assessments**: Technical assessments
-- **learning_roadmaps**: Learning paths
-- **placement_assessments**: Placement readiness data
-- **interviews**: Interview sessions
-- **reflections**: Reflection entries
-- **progress**: Progress tracking
-- **readiness_scores**: Industry readiness metrics
+The backend is designed to be independently testable:
 
-## Security
-
-- JWT-based authentication
-- Input validation with Pydantic
-- CORS configuration
-- SQL injection protection via SQLAlchemy
-- Environment variable configuration for secrets
-
-## Development
-
-### Running Tests
 ```bash
-# Backend
-cd backend
-pytest tests/
-
-# Frontend
-cd demo
-streamlit run app.py
+python -m backend.cli health
+python -m backend.cli diagnose
+python -m backend.cli test
+python -m backend.cli benchmark
+python -m backend.cli survey
+python -m backend.cli assessment
+python -m backend.cli skill-gap
+python -m backend.cli roadmap
+python -m backend.cli learning
+python -m backend.cli reflection
+python -m backend.cli readiness
+python -m backend.cli aptitude
+python -m backend.cli coding
+python -m backend.cli technical
+python -m backend.cli interview
+python -m backend.cli hr
+python -m backend.cli placement
+python -m backend.cli placement-report
+python -m backend.cli run
 ```
 
-### Database Migrations
+CLI, FastAPI, and Streamlit should use the same application services rather than duplicate business logic.
+
+## 🚀 Running the Backend
+
 ```bash
-# Create new migration
-alembic revision --autogenerate -m "description"
-
-# Apply migrations
-alembic upgrade head
-
-# Rollback
-alembic downgrade -1
+python -m uvicorn main:app --reload --port 8000
 ```
 
-## Project Structure
+Open:
 
+```text
+http://localhost:8000/docs
 ```
-.
+
+## 🖥️ Running Streamlit
+
+After the backend is stable:
+
+```bash
+streamlit run frontend/app.py
+```
+
+Streamlit should display the current Skill, collect input, call backend APIs, display evaluation, and show the next action. Workflow decisions remain in the backend.
+
+## 🔐 Environment Variables
+
+Create `.env` locally:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+SECRET_KEY=your_random_application_secret
+DATABASE_URL=your_database_connection_string
+```
+
+Never commit real API keys or secrets to GitHub. Add `.env` to `.gitignore`.
+
+## 📂 Suggested Project Structure
+
+```text
+AI-Career-Coach/
+├── README.md
+├── .gitignore
+├── .env.example
+├── assets/
+│   └── architecture.png
 ├── backend/
-│   ├── agent/           # AI Agent orchestration
-│   ├── api/             # FastAPI routers
-│   ├── auth/            # Authentication handlers
-│   ├── config/          # Configuration
-│   ├── core/            # Core utilities (LLM, logger, etc.)
-│   ├── database/        # Database session
-│   ├── evaluation/      # Evaluation engine
-│   ├── memory/          # Student memory
-│   ├── models/          # SQLAlchemy models
-│   ├── placement/       # Placement simulation module
-│   ├── repositories/    # Repository pattern
-│   ├── services/        # Groq service
-│   ├── skills/          # AI skills
-│   ├── alembic/         # Database migrations
-│   ├── main.py          # Application entry
-│   └── requirements.txt
-├── demo/               # Streamlit frontend (to be renamed to frontend)
-│   ├── api/             # Frontend API clients
-│   ├── components/      # UI components
-│   ├── config/          # Frontend configuration
-│   ├── state/           # Session state management
-│   ├── utils/           # UI utilities
-│   ├── app.py           # Frontend entry
-│   └── requirements.txt
-├── docs/               # Documentation
-└── README.md
+│   ├── api/
+│   ├── core/
+│   ├── workflow/
+│   ├── planner/
+│   ├── router/
+│   ├── pipelines/
+│   ├── skills/
+│   ├── llm/
+│   ├── evaluation/
+│   ├── memory/
+│   ├── intelligence/
+│   ├── database/
+│   ├── schemas/
+│   └── cli/
+├── frontend/
+│   └── app.py
+└── tests/
 ```
 
-## License
+Use the existing implementation where possible rather than duplicating modules.
 
-MIT License
+## 🔍 Design Principles
+
+- **Modular:** Each Skill is independently executable.
+- **Reusable:** Common execution logic is handled by Pipelines.
+- **LLM-Agnostic:** Model providers are separated from business logic.
+- **Evidence-Based:** Decisions use stored performance and activity evidence.
+- **Adaptive:** The next action changes according to student progress.
+- **Persistent:** Student context is retained across interactions.
+- **Observable:** Workflow, Skill, LLM, evaluation, memory, and performance events can be logged.
+- **Student-Centric:** The objective is to maximize placement readiness.
+
+## 🌟 Key Differentiator
+
+Traditional platform:
+
+```text
+Course → Test → Score
+```
+
+AI Career Coach:
+
+```text
+Student State
+     ↓
+Understand
+     ↓
+Plan
+     ↓
+Execute
+     ↓
+Evaluate
+     ↓
+Learn From Evidence
+     ↓
+Update Student State
+     ↓
+Next Best Action
+     ↓
+Repeat
+```
+
+The platform therefore acts as an **adaptive career intelligence system**, not simply a question generator or chatbot.
+
+## 🎯 Expected Impact
+
+### Students
+- Better career direction
+- Clearer skill gaps
+- Personalized learning
+- Continuous feedback
+- Realistic placement practice
+- Better understanding of placement readiness
+
+### Institutions
+- Better visibility into student skill gaps
+- Targeted placement preparation
+- Readiness tracking
+- Evidence-based intervention
+
+### Placement Teams
+- Structured student readiness information
+- Role-oriented preparation
+- Realistic placement simulations
+- Detailed performance evidence
+
+## 🔮 Future Scope
+
+- Company-specific preparation
+- Company-fit matching
+- Peer benchmarking
+- Advanced recruiter simulations
+- Voice-based interviews
+- Automated coding evaluation
+- Deeper knowledge-graph reasoning
+- Advanced placement analytics
+- Mentor escalation for low-confidence or complex cases
+
+## 👨‍💻 Project Vision
+
+> **From "What should I learn?" to "What should I do next?" to "Am I ready for the job?"**
+
+AI Career Coach connects **career discovery, assessment, learning, evaluation, memory, and placement simulation** into one adaptive journey.
+
+### Goal
+
+**Maximize Student Placement Readiness.**

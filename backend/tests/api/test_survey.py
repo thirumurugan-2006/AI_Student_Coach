@@ -49,8 +49,9 @@ class TestSurveyEndpoint:
 
     async def test_survey_agent_error_returns_500(self, client: AsyncClient):
         """When the career agent raises an exception, the endpoint should return 500."""
+        from main import app
         # Make the mock agent raise
-        client.app.state.career_agent.handle_request = AsyncMock(
+        app.state.career_agent.handle_request = AsyncMock(
             side_effect=RuntimeError("LLM provider unreachable")
         )
 

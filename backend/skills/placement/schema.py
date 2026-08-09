@@ -53,6 +53,11 @@ class PlacementOutput(BaseModel):
     """Placement skill output schema."""
     
     status: str = Field(description="Current placement status: in_progress, ready, needs_work")
+
+    profile: Optional[dict] = Field(
+        default=None,
+        description="Student placement profile scores (e.g. technical_readiness, communication_score, etc.)"
+    )
     
     # LLM generates question content
     question_content: Optional[PlacementQuestionContent] = Field(
